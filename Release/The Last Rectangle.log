@@ -1,0 +1,12 @@
+﻿  Bullet.cpp
+  Camera.cpp
+  Enemies.cpp
+  Game.cpp
+  Player.cpp
+D:\CPP\Projects\Mini Projects Assignments\The Last Rectangle\Player.cpp(81,20): warning C4018: '<': signed/unsigned mismatch
+  Source.cpp
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 98 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  The Last Rectangle.vcxproj -> D:\CPP\Projects\Mini Projects Assignments\The Last Rectangle\Release\The Last Rectangle.exe
