@@ -21,7 +21,7 @@ Player::Player()
 	playerRect.setOrigin(sf::Vector2f(50, 10));
 
 	//Bullet sound
-	if (bulletBuffer.loadFromFile("Assets/BulletSound.wav"))
+	if (bulletBuffer.loadFromFile("Assets/BulletSound.wav") == false)
 		std::cout << "Error while loading sound";
 
 	bulletSound.setBuffer(bulletBuffer);
@@ -100,6 +100,7 @@ void Player::shoot(sf::RenderWindow& window)
 		bulletSound.play();
 	}
 	
+	//Checking bullet condition
 	for (unsigned int i = 0; i < bulletList.size(); i++)
 	{
 		bulletList[i]->fire(sf::Vector2f(bulletSpeed, 0));
@@ -108,18 +109,6 @@ void Player::shoot(sf::RenderWindow& window)
 		if (bulletList[i]->bullet.getPosition().x > getX()+1000)
 		{
 			bulletList[i]->destroy();
-		}
-	}
-
-	for (unsigned int i = 0; i < bulletList.size(); i++)
-	{
-		if (bulletList[i]->isDestroyed())
-		{
-			std::vector<Bullet*>::iterator itr;
-			itr = bulletList.begin();
-			delete* itr; 
-			bulletList.erase(itr);
-
 		}
 	}
 

@@ -1,4 +1,4 @@
-﻿  EnemyType1.cpp
-D:\CPP\Projects\Mini Projects Assignments\The Last Rectangle\EnemyType1.cpp(16,41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\CPP\Projects\Mini Projects Assignments\The Last Rectangle\EnemyType1.cpp(22,13): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+﻿  Game.cpp
+  Player.cpp
+  Generating Code...
   The Last Rectangle.vcxproj -> D:\CPP\Projects\Mini Projects Assignments\The Last Rectangle\Debug\The Last Rectangle.exe

@@ -18,7 +18,7 @@ class EnemyType2 :	public EnemiesBase
 
 		void spawn(Player&);
 		void attack();
-		void destroy();
+		void destroy(Player&, int&);
 		void draw(sf::RenderWindow&);
 
 		bool isDestroyed();

@@ -49,5 +49,7 @@ class Game
 		void gameLoop();
 		void update();
 		void spawnEnemy();
+		void destroyCondition();
+		void destroy();
 };
 

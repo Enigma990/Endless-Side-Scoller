@@ -33,9 +33,9 @@ void Game::initialization()
 	spawnFrequency = 3;
 
 	//Enemy Spawn Time 
-	spawnTime1 = 3.0f;
+	spawnTime1 = 2.0f;
 	spawnTime2 = 5.0f;
-	spawnTime3 = 10.0f;
+	spawnTime3 = 8.0f;
 }
 
 void Game::gameLoop()
@@ -77,6 +77,8 @@ void Game::update()
 	
 	//Enemy Update
 	spawnEnemy();
+	destroyCondition();
+	destroy();
 }
 
 void Game::spawnEnemy()
@@ -125,12 +127,49 @@ void Game::spawnEnemy()
 			break;
 	}
 
-
-
 	for (unsigned int i = 0; i < enemiesList.size(); i++)
 	{
 		//enemiesList[i]->spawn(player);
 		enemiesList[i]->attack();
 		enemiesList[i]->draw(window);
+	}
+}
+
+void Game::destroyCondition()
+{
+	for (unsigned int i = 0; i < enemiesList.size(); i++)
+	{
+		enemiesList[i]->destroy(player, kills);
+	}
+
+}
+
+void Game::destroy()
+{
+	//Destroying enemies
+	for (unsigned int i = 0; i < enemiesList.size(); i++)
+	{
+		if (enemiesList[i]->isDestroyed())
+		{
+			//std::vector<EnemiesBase*>::iterator itr;
+			//itr = enemiesList.begin();
+			//delete* itr;
+			
+			delete enemiesList[i];
+			enemiesList.erase(enemiesList.begin()+i);
+		}
+	}
+
+	//Destroying Bullets
+	for (unsigned int i = 0; i < player.bulletList.size(); i++)
+	{
+		if (player.bulletList[i]->isDestroyed())
+		{
+			std::vector<Bullet*>::iterator itr;
+			itr = player.bulletList.begin();
+			delete* itr;
+			player.bulletList.erase(itr);
+
+		}
 	}
 }
