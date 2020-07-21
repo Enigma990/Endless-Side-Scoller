@@ -32,11 +32,11 @@ void EnemyType1::destroy(Player& player, int& kills)
 			player.bulletList[i]->destroy();
 			kills++;
 		}
+	}
 
-		if (enemy.getPosition().x < player.getX() - 1000)
-		{
-			enemyState = true;
-		}
+	if (enemy.getPosition().x < player.getX() - 500)
+	{
+		enemyState = true;
 	}
 }
 
@@ -48,4 +48,12 @@ bool EnemyType1::isDestroyed()
 void EnemyType1::draw(sf::RenderWindow& window)
 {
 	window.draw(enemy);
+}
+
+void EnemyType1::playerCollision(Player& player)
+{
+	if (enemy.getGlobalBounds().intersects(player.collider()))
+	{
+		player.dead();
+	}
 }

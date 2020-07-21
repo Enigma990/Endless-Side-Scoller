@@ -20,6 +20,7 @@ class EnemyType1 : public EnemiesBase
 		void attack();
 		void destroy(Player&, int&);
 		void draw(sf::RenderWindow&);
+		void playerCollision(Player&);
 
 		bool isDestroyed();
 };

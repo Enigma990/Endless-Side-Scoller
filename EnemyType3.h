@@ -1,16 +1,23 @@
 #pragma once
 #include<SFML/Graphics.hpp>
+#include<vector>
 #include "EnemiesBase.h"
 #include "Player.h"
+#include "EnemyBullet.h"
 
 class EnemyType3 :	public EnemiesBase
 {
 	int attackSpeed;
 	int posY;
+	int health;
 
 	bool enemyState;
 
 	sf::CircleShape enemy;
+
+	sf::Clock fireTime;
+
+	std::vector<EnemyBullet*> enemyBullets;
 
 	public:
 
@@ -20,6 +27,7 @@ class EnemyType3 :	public EnemiesBase
 		void attack();
 		void destroy(Player&, int& kills);
 		void draw(sf::RenderWindow&);
+		void playerCollision(Player&);
 
 		bool isDestroyed();
 };

@@ -14,6 +14,7 @@ Player::Player()
 
 	isJumping = false;
 	isFiring = false;
+	isAlive = true;
 
 	//Player definition
 	playerRect.setSize(sf::Vector2f(100, 20));
@@ -35,6 +36,11 @@ float Player::getX()
 float Player::getY()
 {
 	return playerRect.getPosition().y;
+}
+
+sf::FloatRect Player::collider()
+{
+	return playerRect.getGlobalBounds();
 }
 
 
@@ -111,5 +117,17 @@ void Player::shoot(sf::RenderWindow& window)
 			bulletList[i]->destroy();
 		}
 	}
+}
 
+void Player::dead()
+{
+	isAlive = false;
+}
+
+void Player::draw(sf::RenderWindow& window)
+{
+	if (isAlive)
+	{
+		window.draw(playerRect);
+	}
 }

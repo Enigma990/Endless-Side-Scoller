@@ -1,5 +1,6 @@
 #pragma once
 #include<SFML/Graphics.hpp>
+#include<SFML/Audio.hpp>
 #include<iostream>
 #include<sstream>
 #include<vector>
@@ -36,6 +37,8 @@ class Game
 		sf::Font font;
 		sf::Text score;
 		sf::Vector2f scorePosition;
+
+		sf::Music backgroundMusic;
 
 		std::vector<EnemiesBase*> enemiesList;
 

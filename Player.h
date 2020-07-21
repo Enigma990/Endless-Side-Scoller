@@ -21,6 +21,7 @@ class Player
 
 		bool isJumping;
 		bool isFiring;
+		bool isAlive;
 
 		sf::SoundBuffer bulletBuffer;
 		sf::Sound bulletSound;
@@ -37,6 +38,7 @@ class Player
 		//Player Position
 		float getX();
 		float getY();
+		sf::FloatRect collider();
 
 		//player actions
 		
@@ -44,4 +46,7 @@ class Player
 
 		void movement();
 		void shoot(sf::RenderWindow&);
+		void draw(sf::RenderWindow&);
+		void dead();
+		
 };

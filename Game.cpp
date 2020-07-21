@@ -33,9 +33,17 @@ void Game::initialization()
 	spawnFrequency = 3;
 
 	//Enemy Spawn Time 
-	spawnTime1 = 2.0f;
+	spawnTime1 = 3.0f;
 	spawnTime2 = 5.0f;
 	spawnTime3 = 8.0f;
+
+	//Background Music
+	if(!backgroundMusic.openFromFile("Assets/BackgroundMusic.wav"))
+	{
+		std::cerr << "Error while loading background audio" << std::endl;
+	}
+	backgroundMusic.setLoop(true);
+	backgroundMusic.play();
 }
 
 void Game::gameLoop()
@@ -54,9 +62,8 @@ void Game::gameLoop()
 
 		//Rendering game
 		window.clear();
-		window.setView(camera.cameraView);
-		window.draw(camera.background);
-		window.draw(player.playerRect);
+		camera.draw(window);
+		player.draw(window);
 		update();
 		window.draw(score);
 		window.display();
@@ -86,12 +93,11 @@ void Game::spawnEnemy()
 	spawnType = rand() % spawnFrequency + 1;
 	EnemiesBase* newEnemy;
 
-	switch (int(spawnType))
+	switch (spawnType)
 	{
 		case 1:
 			if (enemyTime1.getElapsedTime().asSeconds() > spawnTime1)
-			{
-
+			{         
 				newEnemy = new EnemyType1();
 				newEnemy->spawn(player);
 				enemiesList.push_back(newEnemy);
@@ -129,7 +135,6 @@ void Game::spawnEnemy()
 
 	for (unsigned int i = 0; i < enemiesList.size(); i++)
 	{
-		//enemiesList[i]->spawn(player);
 		enemiesList[i]->attack();
 		enemiesList[i]->draw(window);
 	}
@@ -139,6 +144,7 @@ void Game::destroyCondition()
 {
 	for (unsigned int i = 0; i < enemiesList.size(); i++)
 	{
+		enemiesList[i]->playerCollision(player);
 		enemiesList[i]->destroy(player, kills);
 	}
 
@@ -169,7 +175,6 @@ void Game::destroy()
 			itr = player.bulletList.begin();
 			delete* itr;
 			player.bulletList.erase(itr);
-
 		}
 	}
 }
