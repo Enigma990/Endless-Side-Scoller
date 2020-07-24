@@ -45,8 +45,10 @@ class Player
 		Player();
 
 		void movement();
-		void shoot(sf::RenderWindow&);
-		void draw(sf::RenderWindow&);
+		void shoot();
+		void draw(sf::RenderTarget&);
+		void reset();
 		void dead();
+		bool isDead();
 		
 };

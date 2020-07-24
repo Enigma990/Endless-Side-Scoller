@@ -2,8 +2,10 @@
 #include<SFML/Graphics.hpp>
 #include<SFML/Audio.hpp>
 #include<iostream>
+#include<fstream>
 #include<sstream>
 #include<vector>
+#include "States.h"
 #include "Player.h"
 #include "Camera.h"
 #include "EnemiesBase.h"
@@ -11,10 +13,7 @@
 #include "EnemyType2.h"
 #include "EnemyType3.h"
 
-#define WINDOW_WIDTH 800
-#define WINDOW_HEIGHT 600
-
-class Game
+class Game : public State
 {
 	int kills;
 
@@ -29,10 +28,10 @@ class Game
 	sf::Clock enemyTime1;
 	sf::Clock enemyTime2;
 	sf::Clock enemyTime3;
+
+	std::ofstream currentScore;
 	
 	public:
-
-		sf::RenderWindow window;
 
 		sf::Font font;
 		sf::Text score;
@@ -47,12 +46,13 @@ class Game
 
 		//Game Functions
 		Game();
+		void update(sf::Vector2f, int&);
+		void draw(sf::RenderTarget&);
 
 		void initialization();
-		void gameLoop();
-		void update();
 		void spawnEnemy();
 		void destroyCondition();
 		void destroy();
+		void reset();
 };
 

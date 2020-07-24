@@ -1,12 +1,12 @@
 #include<iostream>
 #include<SFML/Graphics.hpp>
+#include "StateManager.h"
 #include "Game.h"
 
 int main()
 {
-	Game game;
-
-	game.gameLoop();
+	StateManager game;
+	game.run();
 
 	return 0;
 }

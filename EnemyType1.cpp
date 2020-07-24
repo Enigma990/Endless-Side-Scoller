@@ -45,7 +45,7 @@ bool EnemyType1::isDestroyed()
 	return enemyState;
 }
 
-void EnemyType1::draw(sf::RenderWindow& window)
+void EnemyType1::draw(sf::RenderTarget& window)
 {
 	window.draw(enemy);
 }

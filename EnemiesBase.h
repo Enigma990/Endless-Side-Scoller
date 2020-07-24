@@ -9,7 +9,7 @@ class EnemiesBase
 		virtual void spawn(Player&) = 0;
 		virtual void attack() = 0;
 		virtual void destroy(Player&, int&) = 0;
-		virtual void draw(sf::RenderWindow&) = 0;
+		virtual void draw(sf::RenderTarget&) = 0;
 		virtual void playerCollision(Player&) = 0;
 
 		virtual bool isDestroyed() = 0;

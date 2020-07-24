@@ -7,9 +7,6 @@ Game::Game()
 
 void Game::initialization()
 {
-	window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "REKT");
-	window.setFramerateLimit(60);
-
 	//Score Initialization
 	kills = 0;
 	
@@ -44,48 +41,7 @@ void Game::initialization()
 	}
 	backgroundMusic.setLoop(true);
 	backgroundMusic.play();
-}
-
-void Game::gameLoop()
-{
-	while (window.isOpen())
-	{
-		sf::Event event;
-
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-			{
-				window.close();
-			}
-		}
-
-		//Rendering game
-		window.clear();
-		camera.draw(window);
-		player.draw(window);
-		update();
-		window.draw(score);
-		window.display();
-	}
-}
-
-void Game::update()
-{
-	//Score Update
-	std::stringstream scoreText;
-	scoreText << "Score: " << kills;
-	score.setString(scoreText.str());
-
-	//Game Update
-	camera.Cameramovement(score);
-	player.movement();
-	player.shoot(window);
-	
-	//Enemy Update
-	spawnEnemy();
-	destroyCondition();
-	destroy();
+	backgroundMusic.setPlayingOffset(sf::seconds(1.5f));
 }
 
 void Game::spawnEnemy()
@@ -132,12 +88,6 @@ void Game::spawnEnemy()
 		default:
 			break;
 	}
-
-	for (unsigned int i = 0; i < enemiesList.size(); i++)
-	{
-		enemiesList[i]->attack();
-		enemiesList[i]->draw(window);
-	}
 }
 
 void Game::destroyCondition()
@@ -156,11 +106,7 @@ void Game::destroy()
 	for (unsigned int i = 0; i < enemiesList.size(); i++)
 	{
 		if (enemiesList[i]->isDestroyed())
-		{
-			//std::vector<EnemiesBase*>::iterator itr;
-			//itr = enemiesList.begin();
-			//delete* itr;
-			
+		{	
 			delete enemiesList[i];
 			enemiesList.erase(enemiesList.begin()+i);
 		}
@@ -177,4 +123,59 @@ void Game::destroy()
 			player.bulletList.erase(itr);
 		}
 	}
+
+	if (player.getX() < camera.cameraView.getCenter().x - 600)
+	{
+		player.dead();
+	}
+
+}
+
+void Game::reset()
+{
+	camera.cameraView.reset(sf::FloatRect(0, 0, 800, 600));
+	score.setPosition(scorePosition);
+	player.reset();
+}
+
+void Game::update(sf::Vector2f mPos, int& stateId)
+{
+	//Score Update
+	currentScore.open("currentScore.txt");
+	std::stringstream scoreText;
+	scoreText << "Score: " << kills;
+	score.setString(scoreText.str());
+	currentScore << std::to_string(kills);
+	currentScore.close();
+
+	//Game Update
+	camera.Cameramovement(score);
+	player.movement();
+	player.shoot();
+	if (player.isDead())
+	{
+		stateId = 2;	//GameOver Menu
+		reset();
+	}
+
+	//Enemy Update
+	spawnEnemy();
+	destroyCondition();
+	destroy();
+}
+
+void Game::draw(sf::RenderTarget& window)
+{
+	camera.draw(window);
+	window.draw(score);
+
+	//Enemies Bullet render
+	for (unsigned int i = 0; i < enemiesList.size(); i++)
+	{
+		enemiesList[i]->attack();
+		enemiesList[i]->draw(window);
+	}
+
+	//Player render
+	player.draw(window);
 }

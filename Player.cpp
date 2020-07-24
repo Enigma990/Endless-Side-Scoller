@@ -88,7 +88,7 @@ void Player::movement()
 	}
 }
 
-void Player::shoot(sf::RenderWindow& window)
+void Player::shoot()
 {
 	
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && lastFire.getElapsedTime().asSeconds() > fireRate)
@@ -109,10 +109,7 @@ void Player::shoot(sf::RenderWindow& window)
 	//Checking bullet condition
 	for (unsigned int i = 0; i < bulletList.size(); i++)
 	{
-		bulletList[i]->fire(sf::Vector2f(bulletSpeed, 0));
-		bulletList[i]->draw(window);
-
-		if (bulletList[i]->bullet.getPosition().x > getX()+1000)
+		if (bulletList[i]->bullet.getPosition().x > getX() + 800)
 		{
 			bulletList[i]->destroy();
 		}
@@ -124,10 +121,25 @@ void Player::dead()
 	isAlive = false;
 }
 
-void Player::draw(sf::RenderWindow& window)
+bool Player::isDead()
 {
-	if (isAlive)
+	return !isAlive;
+}
+
+void Player::reset()
+{
+	playerRect.setPosition(sf::Vector2f(posX, posY));
+	isAlive = true;
+}
+
+void Player::draw(sf::RenderTarget& window)
+{
+	window.draw(playerRect);
+
+	//Displaying bullet
+	for (unsigned int i = 0; i < bulletList.size(); i++)
 	{
-		window.draw(playerRect);
+		bulletList[i]->fire(sf::Vector2f(bulletSpeed, 0));
+		bulletList[i]->draw(window);
 	}
 }

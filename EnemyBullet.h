@@ -15,7 +15,7 @@ class EnemyBullet
 
 		void bulletPosition(sf::Vector2f);
 		void fire(sf::Vector2f);
-		void draw(sf::RenderWindow&);
+		void draw(sf::RenderTarget&);
 		void destroy();
 
 		bool isDestroyed();

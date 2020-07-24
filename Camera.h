@@ -11,10 +11,9 @@ class Camera
 		sf::Texture texBackground;
 		sf::Sprite background1;
 		sf::Sprite background2;
-		//sf::RectangleShape background;
 
 		Camera();
 		void Cameramovement(sf::Text&);
-		void draw(sf::RenderWindow&);
+		void draw(sf::RenderTarget&);
 };
 

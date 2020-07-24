@@ -69,7 +69,7 @@ bool EnemyType3::isDestroyed()
 	return enemyState;
 }
 
-void EnemyType3::draw(sf::RenderWindow& window)
+void EnemyType3::draw(sf::RenderTarget& window)
 {
 	window.draw(enemy);
 

@@ -1,14 +1,16 @@
 #pragma once
 #include<SFML/Graphics.hpp>
 #include<iostream>
+#include"States.h"
 
 #define MAXITEMS 3
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
 
-class MainMenu
+class MainMenu :public State
 {
-	int selectedItem;
+	sf::Texture texBackground;
+	sf::Sprite background;
 
 	sf::Font menuFont;
 	sf::Text menu[MAXITEMS];
@@ -20,7 +22,7 @@ class MainMenu
 		MainMenu();
 		~MainMenu();
 
-		void update();
-		void draw();
+		void update(sf::Vector2f, int&);
+		void draw(sf::RenderTarget&);
 };
 

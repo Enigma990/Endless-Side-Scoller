@@ -26,7 +26,7 @@ class EnemyType3 :	public EnemiesBase
 		void spawn(Player& player);
 		void attack();
 		void destroy(Player&, int& kills);
-		void draw(sf::RenderWindow&);
+		void draw(sf::RenderTarget&);
 		void playerCollision(Player&);
 
 		bool isDestroyed();

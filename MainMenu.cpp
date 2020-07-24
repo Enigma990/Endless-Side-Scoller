@@ -9,7 +9,7 @@ MainMenu::MainMenu()
 
 	//Menu Option 1
 	menu[0].setFont(menuFont);
-	menu[0].setFillColor(sf::Color::Red);
+	menu[0].setFillColor(sf::Color::White);
 	menu[0].setString("Play");
 	menu[0].setPosition(sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / (MAXITEMS + 1) * 1));
 
@@ -25,7 +25,17 @@ MainMenu::MainMenu()
 	menu[2].setString("Exit");
 	menu[2].setPosition(sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / (MAXITEMS + 1) * 3));
 
-	update();
+
+	//Background Image
+	if (!texBackground.loadFromFile("Assets/background.jpeg"))
+	{
+		std::cerr << "Background Image Loading Failed" << std::endl;
+	}
+
+	background.setTextureRect(sf::IntRect(0, 0, 800, 600));
+	background.setPosition(0, 0);
+	background.setTexture(texBackground);
+
 }
 
 MainMenu::~MainMenu()
@@ -33,46 +43,25 @@ MainMenu::~MainMenu()
 
 }
 
-void MainMenu::update()
+void MainMenu::update(sf::Vector2f mPos, int& stateId)
 {
-	window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "REKT");
-	window.setFramerateLimit(60);
-
-	while (window.isOpen())
+	for (int i = 0; i < MAXITEMS; i++)
 	{
-		sf::Event event;
-
-		while (window.pollEvent(event))
+		if (menu[i].getGlobalBounds().contains(mPos))
 		{
-			if (event.type == sf::Event::Closed)
-			{
-				window.close();
-			}
+			menu[i].setFillColor(sf::Color::Red);
 
-			if (event.type == sf::Event::KeyReleased)
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 			{
-				switch (event.key.code)
+				switch (i)
 				{
-					case sf::Keyboard::W:
-
-						if (selectedItem > 0)
-						{
-							menu[selectedItem].setFillColor(sf::Color::White);
-							selectedItem--;
-							menu[selectedItem].setFillColor(sf::Color::Red);
-						}
+					case 0 :
+						stateId = 1;
 						break;
 
-					case sf::Keyboard::D:
-
-						if (selectedItem + 1 < MAXITEMS)
-						{
-							menu[selectedItem].setFillColor(sf::Color::White);
-							selectedItem++;
-							menu[selectedItem].setFillColor(sf::Color::Red);
-						}
+					case 2:
+						stateId = -1;
 						break;
-
 
 					default:
 						break;
@@ -80,13 +69,17 @@ void MainMenu::update()
 			}
 
 		}
-
+		else
+		{
+			menu[i].setFillColor(sf::Color::	White);
+		}
 	}
-
 }
 
-void MainMenu::draw()
+void MainMenu::draw(sf::RenderTarget& window)
 {
+	window.draw(background);
+
 	for (int i = 0; i < MAXITEMS; i++)
 	{
 		window.draw(menu[i]);

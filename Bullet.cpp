@@ -17,7 +17,7 @@ void Bullet::fire(sf::Vector2f dir)
 	bullet.move(dir);
 }
 
-void Bullet::draw(sf::RenderWindow& window)
+void Bullet::draw(sf::RenderTarget& window)
 {
 	window.draw(bullet);
 }
