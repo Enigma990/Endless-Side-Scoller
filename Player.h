@@ -23,6 +23,8 @@ class Player
 		bool isFiring;
 		bool isAlive;
 
+		sf::Texture	playerTexture;
+
 		sf::SoundBuffer bulletBuffer;
 		sf::Sound bulletSound;
 	

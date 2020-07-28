@@ -5,10 +5,10 @@ Player::Player()
 	moveSpeed = 10.0f;
 	gravity = 10.0f;
 	posX = 100;
-	posY = 550;
-	jumpSpeed = 12.0f;
+	posY = 530;
+	jumpSpeed = 10.0f;
 	moveY = 0;
-	jumpHeight = 400;
+	jumpHeight = 380;
 	bulletSpeed = 25.0f;
 	fireRate = 0.5f;
 
@@ -17,9 +17,16 @@ Player::Player()
 	isAlive = true;
 
 	//Player definition
+
+	if (playerTexture.loadFromFile("Assets/Player Texture.jpeg") == false)
+	{
+		std::cerr << "Player Texture loading failed" << std::endl;
+	}
+
 	playerRect.setSize(sf::Vector2f(100, 20));
 	playerRect.setPosition(sf::Vector2f(posX, posY));
 	playerRect.setOrigin(sf::Vector2f(50, 10));
+	playerRect.setTexture(&playerTexture);
 
 	//Bullet sound
 	if (bulletBuffer.loadFromFile("Assets/BulletSound.wav") == false)

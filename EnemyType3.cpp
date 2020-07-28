@@ -4,7 +4,7 @@ EnemyType3::EnemyType3()
 {
 	//	spawn();
 	attackSpeed = 5;
-	posY = 550;
+	posY = 530;
 	health = 3;
 
 	enemyState = false;

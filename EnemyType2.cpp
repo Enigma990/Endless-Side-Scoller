@@ -4,7 +4,7 @@ EnemyType2::EnemyType2()
 {
 	//	spawn();
 	attackSpeed = 2;
-	posY = 550;
+	posY = 510;
 
 	enemyState = false;
 }
@@ -13,7 +13,7 @@ void EnemyType2::spawn(Player& player)
 {
 	enemy.setRadius(40);
 	enemy.setOrigin(20, 20);
-	enemy.setPosition(player.getX() + 2000, posY - 150);
+	enemy.setPosition(player.getX() + 2000, posY - 130);
 	enemy.setFillColor(sf::Color::Green);
 }
 

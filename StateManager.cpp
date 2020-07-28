@@ -53,13 +53,19 @@ void StateManager::changeState()
 			break;
 
 		case 1:
+			delete gameOver;
 			game = new Game();
 			currentState = game;
 			break;
 
 		case 2:
 			delete game;
-			currentState = &gameOver;
+			gameOver = new GameOver();
+			currentState = gameOver;
+			break;
+
+		case 3:
+			currentState = &pauseMenu;
 			break;
 
 		default:

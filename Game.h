@@ -44,6 +44,11 @@ class Game : public State
 		Player player;
 		Camera camera;
 
+		//Pause Button
+		sf::Texture pauseButtonTexture;
+		sf::Sprite pauseButton;
+		//sf::RectangleShape pauseButton;
+
 		//Game Functions
 		Game();
 		void update(sf::Vector2f, int&);

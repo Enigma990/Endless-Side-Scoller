@@ -4,7 +4,7 @@ EnemyType1::EnemyType1()
 {
 //	spawn();
 	attackSpeed = 10;
-	posY = 550;
+	posY = 510;
 
 	enemyState = false;
 }

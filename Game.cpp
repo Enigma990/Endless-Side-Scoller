@@ -42,6 +42,18 @@ void Game::initialization()
 	backgroundMusic.setLoop(true);
 	backgroundMusic.play();
 	backgroundMusic.setPlayingOffset(sf::seconds(1.5f));
+
+	//Pause Button
+	if (!pauseButtonTexture.loadFromFile("Assets/Pause Button Texture.jpeg"))
+	{
+		std::cerr << "Error while loading pause button texture" << std::endl;
+	}
+//	pauseButton.setSize(sf::Vector2f(60, 30));
+	pauseButton.setScale(0.05f, 0.05f);
+//	pauseButton.setOrigin(30, 15);
+	pauseButton.setPosition(750, 15);
+	pauseButton.setTexture(pauseButtonTexture);
+
 }
 
 void Game::spawnEnemy()
@@ -141,15 +153,15 @@ void Game::reset()
 void Game::update(sf::Vector2f mPos, int& stateId)
 {
 	//Score Update
-	currentScore.open("currentScore.txt");
+	currentScore.open("CurrentScore.txt");
 	std::stringstream scoreText;
 	scoreText << "Score: " << kills;
 	score.setString(scoreText.str());
-	currentScore << std::to_string(kills);
+	currentScore << kills;
 	currentScore.close();
 
 	//Game Update
-	camera.Cameramovement(score);
+	camera.Cameramovement(score, pauseButton);
 	player.movement();
 	player.shoot();
 	if (player.isDead())
@@ -157,6 +169,15 @@ void Game::update(sf::Vector2f mPos, int& stateId)
 		stateId = 2;	//GameOver Menu
 		reset();
 	}
+
+	if (pauseButton.getGlobalBounds().contains(mPos))
+	{
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+		{
+			stateId = 3;
+		}
+	}
+
 
 	//Enemy Update
 	spawnEnemy();
@@ -168,6 +189,7 @@ void Game::draw(sf::RenderTarget& window)
 {
 	camera.draw(window);
 	window.draw(score);
+	window.draw(pauseButton);
 
 	//Enemies Bullet render
 	for (unsigned int i = 0; i < enemiesList.size(); i++)

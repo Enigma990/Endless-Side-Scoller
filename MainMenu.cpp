@@ -71,7 +71,7 @@ void MainMenu::update(sf::Vector2f mPos, int& stateId)
 		}
 		else
 		{
-			menu[i].setFillColor(sf::Color::	White);
+			menu[i].setFillColor(sf::Color::White);
 		}
 	}
 }

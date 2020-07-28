@@ -21,10 +21,11 @@ Camera::Camera()
 	background2.setTexture(texBackground);
 }
 
-void Camera::Cameramovement(sf::Text& score)
+void Camera::Cameramovement(sf::Text& score, sf::RectangleShape& pauseButton)
 {
 	cameraView.move(cameraSpeed, 0);
 	score.move(cameraSpeed, 0);
+	pauseButton.move(cameraSpeed, 0);
 
 	if (background2.getPosition().x + 400 == cameraView.getCenter().x)
 	{

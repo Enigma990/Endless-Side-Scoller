@@ -36,15 +36,9 @@ GameOver::GameOver()
 	menu[2].setFillColor(sf::Color::White);
 	menu[2].setString("Exit");
 	menu[2].setPosition(sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / (MAXITEMS + 1) * 3));
-}
 
-GameOver::~GameOver()
-{
-}
-
-void GameOver::updateScore()
-{
-	currentScore.open("currentScore.txt");
+	//Current Score 
+	currentScore.open("CurrentScore.txt");
 	while (!currentScore.eof())
 	{
 		currentScore >> scoreText;
@@ -52,11 +46,41 @@ void GameOver::updateScore()
 	currentScore.close();
 
 	score.setFont(gameOverFont);
-	score.setCharacterSize(50);
-	score.setPosition(sf::Vector2f(200, 300));
-	score.setFillColor(sf::Color::White);
-
+	score.setCharacterSize(30);
+	score.setPosition(sf::Vector2f(100, 200));
+	scoreText = "Score: " + scoreText;
 	score.setString(scoreText);
+
+
+	/*
+	//High Score
+	highScoreFile.open("highScoreFile.txt",std::ios::in);
+	while (!highScoreFile.eof())
+	{
+		highScoreFile >> highScoreText;
+	}
+	highScoreFile.close();
+
+	if (std::stoi(scoreText) > std::stoi(highScoreText))
+	{
+		highScoreText = scoreText;
+
+		highScoreFile.open("highScoreFile.txt", std::ios::out);
+		highScoreFile << highScoreText;
+		highScoreFile.close();
+	}
+
+	highScore.setFont(gameOverFont);
+	highScore.setCharacterSize(30);
+	highScore.setPosition(sf::Vector2f(100, 300));
+	highScoreText = "HighScore: " + highScoreText;
+	highScore.setString(highScoreText);
+
+	*/
+}
+
+GameOver::~GameOver()
+{
 }
 
 void GameOver::update(sf::Vector2f mPos, int& stateId)
@@ -94,10 +118,6 @@ void GameOver::update(sf::Vector2f mPos, int& stateId)
 			menu[i].setFillColor(sf::Color::White);
 		}
 	}
-
-	//Score Update
-	updateScore();
-
 }
 
 void GameOver::draw(sf::RenderTarget& window)

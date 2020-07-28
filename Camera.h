@@ -13,7 +13,7 @@ class Camera
 		sf::Sprite background2;
 
 		Camera();
-		void Cameramovement(sf::Text&);
+		void Cameramovement(sf::Text&, sf::Sprite&);
 		void draw(sf::RenderTarget&);
 };
 

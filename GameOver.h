@@ -19,6 +19,10 @@ class GameOver :public State
 	std::ifstream currentScore;
 	std::string scoreText;
 
+	sf::Text highScore;
+	std::fstream highScoreFile;
+	std::string highScoreText;
+
 	sf::Text menu[MAXITEMS];
 
 	public:
