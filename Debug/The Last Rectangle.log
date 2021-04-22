@@ -1,2 +1,35 @@
-﻿  Game.cpp
+﻿  Bullet.cpp
+  Camera.cpp
+  EnemiesBase.cpp
+  EnemyBullet.cpp
+  EnemyType1.cpp
+D:\CPP\Projects\Mini Projects Assignments\The Last Rectangle\EnemyType1.cpp(16,42): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\CPP\Projects\Mini Projects Assignments\The Last Rectangle\EnemyType1.cpp(22,13): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  EnemyType2.cpp
+D:\CPP\Projects\Mini Projects Assignments\The Last Rectangle\EnemyType2.cpp(16,47): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\CPP\Projects\Mini Projects Assignments\The Last Rectangle\EnemyType2.cpp(87,52): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  EnemyType3.cpp
+D:\CPP\Projects\Mini Projects Assignments\The Last Rectangle\EnemyType3.cpp(17,47): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\CPP\Projects\Mini Projects Assignments\The Last Rectangle\EnemyType3.cpp(26,65): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\CPP\Projects\Mini Projects Assignments\The Last Rectangle\EnemyType3.cpp(78,35): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  Game.cpp
+  GameOver.cpp
+  MainMenu.cpp
+  PauseMenu.cpp
+  Player.cpp
+  Source.cpp
+  StateManager.cpp
+  Generating Code...
   The Last Rectangle.vcxproj -> D:\CPP\Projects\Mini Projects Assignments\The Last Rectangle\Debug\The Last Rectangle.exe

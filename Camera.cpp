@@ -21,7 +21,7 @@ Camera::Camera()
 	background2.setTexture(texBackground);
 }
 
-void Camera::Cameramovement(sf::Text& score, sf::RectangleShape& pauseButton)
+void Camera::Cameramovement(sf::Text& score, sf::Sprite& pauseButton)
 {
 	cameraView.move(cameraSpeed, 0);
 	score.move(cameraSpeed, 0);
